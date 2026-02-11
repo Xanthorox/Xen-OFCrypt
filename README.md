@@ -136,6 +136,10 @@ The runtime stub is written entirely in **position-independent native C++** with
 
 ## Encryption Pipeline
 
+<img width="517" height="255" alt="image" src="https://github.com/user-attachments/assets/cb2446a3-a7c6-4532-8e77-1a1996d24ed5" />  <img width="572" height="280" alt="image" src="https://github.com/user-attachments/assets/909f3ea0-f55e-45f6-9210-e7675dc6a5b1" />
+
+
+
 ### Standard Ciphers
 
 | Cipher | Class | Key Schedule | Block/Stream | Self-Inverse | Per-Build Entropy |
