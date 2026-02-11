@@ -1,0 +1,146 @@
+﻿<Window x:Class="XanthoroxCrypted.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:views="clr-namespace:XanthoroxCrypted.Views"
+        mc:Ignorable="d"
+        Title="Xanthorox-OFCrypt" Height="680" Width="1060"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None" AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="CanResizeWithGrip">
+
+    <Border Background="{StaticResource Brush_Void}" CornerRadius="10" BorderBrush="{StaticResource Brush_Border}" BorderThickness="1">
+        <Border.Effect>
+            <DropShadowEffect Color="Black" BlurRadius="30" ShadowDepth="0" Opacity="0.6"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44"/>
+                <RowDefinition Height="1"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="28"/>
+            </Grid.RowDefinitions>
+
+            <!-- ═══ TITLE BAR ═══ -->
+            <Grid Grid.Row="0" Background="{StaticResource Brush_Surface}" MouseLeftButtonDown="TitleBar_MouseLeftButtonDown">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Logo + Title -->
+                <StackPanel Orientation="Horizontal" Margin="16,0,0,0" VerticalAlignment="Center">
+                    <Border Width="8" Height="8" CornerRadius="4" Margin="0,0,10,0">
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="{StaticResource Color_Cyan}" Offset="0"/>
+                                <GradientStop Color="{StaticResource Color_Blue}" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    </Border>
+                    <TextBlock Text="XANTHOROX" FontWeight="Bold" Foreground="{StaticResource Brush_Cyan}" FontSize="13" VerticalAlignment="Center"/>
+                    <TextBlock Text="-OFCrypt" FontWeight="Light" Foreground="{StaticResource Brush_TextSecondary}" FontSize="13" VerticalAlignment="Center"/>
+                    <Border Background="{StaticResource Brush_Card}" CornerRadius="3" Padding="6,2" Margin="12,0,0,0" VerticalAlignment="Center">
+                        <TextBlock Text="v1.0" Foreground="{StaticResource Brush_TextTertiary}" FontSize="10"/>
+                    </Border>
+                </StackPanel>
+
+                <!-- Window Controls -->
+                <StackPanel Grid.Column="2" Orientation="Horizontal" Margin="0,0,6,0" VerticalAlignment="Center">
+                    <Button Content="─" Width="36" Height="30" Click="BtnMinimize_Click" Foreground="{StaticResource Brush_TextSecondary}" Background="Transparent" BorderThickness="0" Cursor="Hand" FontSize="11">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="bg" Background="Transparent" CornerRadius="4">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="bg" Property="Background" Value="{StaticResource Brush_Card}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Content="✕" Width="36" Height="30" Click="BtnClose_Click" Foreground="{StaticResource Brush_TextSecondary}" Background="Transparent" BorderThickness="0" Cursor="Hand" FontSize="11">
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border x:Name="bg" Background="Transparent" CornerRadius="4">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="bg" Property="Background" Value="{StaticResource Brush_Red}"/>
+                                        <Setter Property="Foreground" Value="White"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+            <!-- Divider -->
+            <Rectangle Grid.Row="1" Fill="{StaticResource Brush_Border}"/>
+
+            <!-- ═══ MAIN BODY ═══ -->
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="1"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- ═══ SIDEBAR ═══ -->
+                <Border Grid.Column="0" Background="{StaticResource Brush_Surface}">
+                    <DockPanel>
+                        <!-- Nav Section -->
+                        <StackPanel DockPanel.Dock="Top" Margin="0,16,0,0">
+                            <TextBlock Text="NAVIGATION" Style="{StaticResource Style_SectionLabel}" Margin="18,0,0,8"/>
+                            <Button Content="⬡  Builder" Tag="Builder" Style="{StaticResource Style_BtnNav}" Click="BtnNav_Click"/>
+                            <Button Content="🎯  Target" Tag="Target" Style="{StaticResource Style_BtnNav}" Click="BtnNav_Click"/>
+                            <Button Content="🧬  Research" Tag="Research" Style="{StaticResource Style_BtnNav}" Click="BtnNav_Click"/>
+                            <Button Content="🔒  Inbuilt" Tag="Inbuilt" Style="{StaticResource Style_BtnNav}" Click="BtnNav_Click"/>
+                            <Button Content="◈  Tradecraft" Tag="Tradecraft" Style="{StaticResource Style_BtnNav}" Click="BtnNav_Click"/>
+                            <Button Content="⟐  Scripting" Tag="Scripting" Style="{StaticResource Style_BtnNav}" Click="BtnNav_Click"/>
+                        </StackPanel>
+
+                        <!-- Bottom info -->
+                        <StackPanel DockPanel.Dock="Bottom" Margin="14,0,14,14">
+                            <Rectangle Height="1" Fill="{StaticResource Brush_Border}" Margin="0,0,0,12"/>
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                                <Ellipse Width="7" Height="7" Fill="{StaticResource Brush_Green}" Margin="0,0,8,0"/>
+                                <TextBlock Text="Engine Ready" Foreground="{StaticResource Brush_TextSecondary}" FontSize="11"/>
+                            </StackPanel>
+                            <TextBlock Text="Stub: Loaded" Foreground="{StaticResource Brush_TextTertiary}" FontSize="10"/>
+                        </StackPanel>
+                    </DockPanel>
+                </Border>
+
+                <!-- Divider -->
+                <Rectangle Grid.Column="1" Fill="{StaticResource Brush_Border}"/>
+
+                <!-- ═══ CONTENT AREA ═══ -->
+                <Grid Grid.Column="2" Background="{StaticResource Brush_Void}">
+                    <views:BuilderView x:Name="ViewBuilder" Visibility="Visible"/>
+                    <views:TargetView x:Name="ViewTarget" Visibility="Collapsed"/>
+                    <views:ResearchView x:Name="ViewResearch" Visibility="Collapsed"/>
+                    <views:InbuiltView x:Name="ViewInbuilt" Visibility="Collapsed"/>
+                    <views:TradecraftView x:Name="ViewTradecraft" Visibility="Collapsed"/>
+                    <views:ScriptingView x:Name="ViewScripting" Visibility="Collapsed"/>
+                </Grid>
+            </Grid>
+
+            <!-- ═══ STATUS BAR ═══ -->
+            <Border Grid.Row="3" Background="{StaticResource Brush_Surface}" BorderBrush="{StaticResource Brush_Border}" BorderThickness="0,1,0,0">
+                <Grid Margin="14,0">
+                    <TextBlock x:Name="LblStatusBar" Text="Ready" Foreground="{StaticResource Brush_TextTertiary}" FontSize="10.5" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock Text="Xanthorox-OFCrypt © 2025" Foreground="{StaticResource Brush_TextTertiary}" FontSize="10" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+</Window>

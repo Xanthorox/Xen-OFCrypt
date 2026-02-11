@@ -1,0 +1,76 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ═══════════════════════════════════════════════════════════ -->
+    <!--  XANTHOROX-OFCRYPT | COLOR SYSTEM                         -->
+    <!-- ═══════════════════════════════════════════════════════════ -->
+
+    <!-- Core Backgrounds -->
+    <Color x:Key="Color_Void">#FF080B12</Color>
+    <Color x:Key="Color_Surface">#FF0D1117</Color>
+    <Color x:Key="Color_Card">#FF131820</Color>
+    <Color x:Key="Color_CardHover">#FF1A2030</Color>
+    <Color x:Key="Color_Elevated">#FF1C2333</Color>
+    <Color x:Key="Color_Border">#FF21262D</Color>
+    <Color x:Key="Color_BorderLight">#FF30363D</Color>
+
+    <!-- Accent -->
+    <Color x:Key="Color_Cyan">#FF00D4FF</Color>
+    <Color x:Key="Color_CyanDim">#FF0098B8</Color>
+    <Color x:Key="Color_CyanGlow">#4000D4FF</Color>
+    <Color x:Key="Color_Blue">#FF388BFD</Color>
+    <Color x:Key="Color_Purple">#FF8957E5</Color>
+    <Color x:Key="Color_Red">#FFFF4757</Color>
+    <Color x:Key="Color_Green">#FF3FB950</Color>
+    <Color x:Key="Color_Orange">#FFD29922</Color>
+
+    <!-- Text -->
+    <Color x:Key="Color_TextPrimary">#FFE6EDF3</Color>
+    <Color x:Key="Color_TextSecondary">#FF8B949E</Color>
+    <Color x:Key="Color_TextTertiary">#FF484F58</Color>
+
+    <!-- ═══ BRUSHES ═══ -->
+    <SolidColorBrush x:Key="Brush_Void" Color="{StaticResource Color_Void}"/>
+    <SolidColorBrush x:Key="Brush_Surface" Color="{StaticResource Color_Surface}"/>
+    <SolidColorBrush x:Key="Brush_Card" Color="{StaticResource Color_Card}"/>
+    <SolidColorBrush x:Key="Brush_CardHover" Color="{StaticResource Color_CardHover}"/>
+    <SolidColorBrush x:Key="Brush_Elevated" Color="{StaticResource Color_Elevated}"/>
+    <SolidColorBrush x:Key="Brush_Border" Color="{StaticResource Color_Border}"/>
+    <SolidColorBrush x:Key="Brush_BorderLight" Color="{StaticResource Color_BorderLight}"/>
+
+    <SolidColorBrush x:Key="Brush_Cyan" Color="{StaticResource Color_Cyan}"/>
+    <SolidColorBrush x:Key="Brush_CyanDim" Color="{StaticResource Color_CyanDim}"/>
+    <SolidColorBrush x:Key="Brush_Blue" Color="{StaticResource Color_Blue}"/>
+    <SolidColorBrush x:Key="Brush_Purple" Color="{StaticResource Color_Purple}"/>
+    <SolidColorBrush x:Key="Brush_Red" Color="{StaticResource Color_Red}"/>
+    <SolidColorBrush x:Key="Brush_Green" Color="{StaticResource Color_Green}"/>
+    <SolidColorBrush x:Key="Brush_Orange" Color="{StaticResource Color_Orange}"/>
+
+    <SolidColorBrush x:Key="Brush_TextPrimary" Color="{StaticResource Color_TextPrimary}"/>
+    <SolidColorBrush x:Key="Brush_TextSecondary" Color="{StaticResource Color_TextSecondary}"/>
+    <SolidColorBrush x:Key="Brush_TextTertiary" Color="{StaticResource Color_TextTertiary}"/>
+
+    <!-- Old compatibility aliases -->
+    <SolidColorBrush x:Key="Brush_BackgroundMain" Color="{StaticResource Color_Void}"/>
+    <SolidColorBrush x:Key="Brush_NavyDark" Color="{StaticResource Color_Surface}"/>
+    <SolidColorBrush x:Key="Brush_NavyLight" Color="{StaticResource Color_Border}"/>
+    <SolidColorBrush x:Key="Brush_NeonCyan" Color="{StaticResource Color_Cyan}"/>
+    <SolidColorBrush x:Key="Brush_NeonRed" Color="{StaticResource Color_Red}"/>
+    <SolidColorBrush x:Key="Brush_TextMain" Color="{StaticResource Color_TextPrimary}"/>
+    <SolidColorBrush x:Key="Brush_TextMuted" Color="{StaticResource Color_TextSecondary}"/>
+    <SolidColorBrush x:Key="Brush_GlassPanel" Color="{StaticResource Color_Card}" />
+    <Color x:Key="Color_NeonCyan">#FF00D4FF</Color>
+    <Color x:Key="Color_NeonRed">#FFFF4757</Color>
+
+    <!-- Gradient Backgrounds -->
+    <LinearGradientBrush x:Key="Brush_HeaderGradient" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource Color_Void}" Offset="0"/>
+        <GradientStop Color="{StaticResource Color_Surface}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="Brush_CyanAccentLine" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="{StaticResource Color_Cyan}" Offset="0"/>
+        <GradientStop Color="Transparent" Offset="1"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>

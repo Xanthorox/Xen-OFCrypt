@@ -1,0 +1,30 @@
+# Build artifacts
+*.obj
+*.pdb
+*.lib
+*.exp
+*.ilk
+*.suo
+*.user
+*.cache
+*.log
+
+# Output directories
+bin/
+obj/
+Bin/
+Debug/
+Release/
+x64/
+
+# IDE
+.vs/
+.vscode/
+*.sln.docstates
+
+# Test artifacts
+test_payload.exe
+test_report.txt
+
+# Owner-only files (do not upload)
+OWNER_BUILD.bat
