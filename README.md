@@ -149,6 +149,9 @@ The runtime stub is written entirely in **position-independent native C++** with
 | **RC4** | Stream | KSA over 256-byte S-Box | Byte-level XOR | Yes (symmetric) | Key-dependent permutation |
 | **Rolling XOR** | Stream | Bit-rotated key cycling | Byte-level XOR with `(key >> (i%8)) \| (key << (8-i%8))` | Yes (symmetric) | Key rotation pattern |
 
+<img width="1313" height="845" alt="image" src="https://github.com/user-attachments/assets/84440a69-a467-4ca7-9dd9-1820a90593d5" />
+
+
 ### Research-Grade Cipher Architectures
 
 These are **custom-designed cryptographic systems, not wrappers around existing libraries.** Each generates a unique set of cryptographic parameters per build — meaning the cipher itself is different every time, not just the key.
