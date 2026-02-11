@@ -18,6 +18,9 @@
 
 ---
 
+<img width="1331" height="855" alt="image" src="https://github.com/user-attachments/assets/81fe05bb-ad0c-412d-8efe-e3bbcbd9060f" />
+
+
 ## Overview
 
 Xanthorox-OFCrypt is not a standard crypter. It is a **full-spectrum evasion framework** that combines four standard ciphers, four custom-designed research-grade cipher architectures, an 18-mutation PE metamorphism engine, and a real-time AV/EDR threat modeling system into a single cohesive tool.
